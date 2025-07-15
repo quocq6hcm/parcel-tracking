@@ -48,20 +48,14 @@ Hotel receptionists often accept parcels for guests staying at the hotel. Howeve
               | (Check-In/Out API) |                                          |  (Track & Claim API) |     
               +--------------------+                                          +----------------------+
 ```
-## Guest Forgets to Pick Up Parcels Before Check-Out
-- Receptionist searches guest by first name, last name or social id.
-- BFF calls GET /guests/{id} to get guest status.
-- If status is CheckedIn / InHouse, allow POST /parcels.
-- New parcel is accepted, status is Unclaimed
-
 ## Parcel Acceptance
 - Receptionist searches guest by first name, last name or social id.
-- BFF calls GET /guests/{id} to get guest status.
+- BFF calls GET /guests/search?query to get guest status.
 - If status is CheckedIn / InHouse, allow POST /parcels.
 - New parcel is accepted, status is Unclaimed
 
 ## Show Parcels Available for Pickup at Guest Check-Out
-- Receptionist searches guest by first name, last name or social id to proceed check out guests
+- Receptionist get guest information to start checkout process
 - BFF calls GET /parcels/{guestId} to get parcels belong to guests and highlight Unclaimed parcels if exist
 - Receptionist delivers Unclaimed parcels
 - BFF calls POST /parcels/{id}/claim to set parcels status to Claimed
